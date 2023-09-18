@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Cartas com Phaser 3</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+</head>
+<body>
+    <script>
+        // Obtenha as dimensões da janela do navegador
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        // Configurações do jogo
+        const config = {
+            type: Phaser.AUTO,
+            width: screenWidth,
+            height: screenHeight,
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        const game = new Phaser.Game(config);
+
+        function preload() {
+            // Carregar as imagens das cartas
+            this.load.image('card1', 'cards/ArianaGrande.jpg');
+            this.load.image('card2', 'cards/Barbie.jpg');
+            this.load.image('card3', 'cards/Batman.jpg');
+            this.load.image('card4', 'cards/DarthVader.jpg');
+            this.load.image('card5', 'cards/Goku.jpg');
+            this.load.image('card6', 'cards/HarryPotter.jpg');
+            // Carregar outras imagens de cartas aqui, se necessário.
+        }
+
+        function create() {
+            // Defina o tamanho das imagens de cartas
+            const imageWidth = 100;
+            const imageHeight = 150;
+
+            // Calcula o espaçamento entre as imagens
+            const spacing = 10;
+
+            // Calcula o espaço total necessário para as imagens e espaçamento
+            const totalWidth = (imageWidth + spacing) * 6;
+
+            // Calcula a posição x inicial para centralizar as imagens
+            const startX = (screenWidth - totalWidth) / 2;
+
+            // Array de nomes das imagens de cartas
+            const cardImages = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6' ];
+
+            // Loop para criar e exibir as 6 imagens de cartas alinhadas
+            for (let i = 0; i < 6; i++) {
+                const x = startX + i * (imageWidth + spacing);
+                const y = screenHeight / 2 - imageHeight / 2;
+                const cardImage = this.add.image(x, y, cardImages[i % cardImages.length]);
+                cardImage.setDisplaySize(imageWidth, imageHeight);
+            }
+
+            // Adicionar texto acima dos retângulos
+            const texto = this.add.text(screenWidth / 2, screenHeight / 2 - imageHeight / 2 - 180, 'As tuas Cartas', { fontSize: '20px', fill: '#ffffff' });
+            texto.setOrigin(0.5);
+        }
+
+        function update() {
+            // Atualizações do jogo
+        }
+    </script>
+</body>
+</html>
