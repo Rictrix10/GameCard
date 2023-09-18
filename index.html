@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Botões</title>
+</head>
+<body>
+    <h1>Bem-vindo ao Jogo de Cartas</h1>
+
+    <!-- Botão "Jogar" -->
+    <button onclick="jogar()">Jogar</button>
+
+    <!-- Botão "Cartas" com redirecionamento -->
+    <button onclick="redirecionarParaCartas()">Cartas</button>
+
+    <script>
+        // Função para redirecionar para a página "cards.html"
+        function redirecionarParaCartas() {
+            window.location.href = "cards.html";
+        }
+
+        // Função de exemplo para o botão "Jogar"
+        function jogar() {
+            alert("Você está pronto para jogar!");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Coleção de Cartas</title>
+    <style>
+        /* Estilo para os retângulos */
+        .carta {
+            width: 200px;
+            height: 280px;
+            border: 2px solid #333;
+            margin: 20px;
+            /* Espaçamento entre as cartas */
+            display: inline-block;
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        /* Estilo para as imagens */
+        .carta img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Minha Coleção de Cartas</h1>
+    <div id="cartasContainer"></div>
+
+    <script>
+        // Função para carregar as cartas do arquivo JSON
+        function carregarCartas() {
+            fetch('cards.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("cartasContainer");
+                    data.forEach(carta => {
+                        const divCarta = document.createElement("div");
+                        divCarta.className = "carta";
+
+                        const img = document.createElement("img");
+                        img.src = carta.imagem;
+                        img.alt = carta.nome;
+
+                        const h2 = document.createElement("h2");
+                        h2.textContent = carta.nome;
+
+                        const p = document.createElement("p");
+                        p.textContent = carta.descricao;
+
+                        divCarta.appendChild(img);
+                        divCarta.appendChild(h2);
+                        divCarta.appendChild(p);
+
+                        container.appendChild(divCarta);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar as cartas:', error));
+        }
+
+        // Chama a função para carregar as cartas
+        carregarCartas();
+    </script>
+</body>
+
+</html>
