@@ -12,6 +12,12 @@
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
 
+        // Variável para rastrear as cartas selecionadas
+        const selectedCards = [];
+
+        // Variável para rastrear o número de cartas que o jogador precisa selecionar
+        let cardsToSelect = 3;
+
         // Configurações do jogo
         const config = {
             type: Phaser.AUTO,
@@ -58,12 +64,41 @@
             for (let i = 0; i < 6; i++) {
                 const x = startX + i * (imageWidth + spacing);
                 const y = screenHeight / 2 - imageHeight / 2;
+
+                // Crie uma imagem interativa
                 const cardImage = this.add.image(x, y, cardImages[i % cardImages.length]);
                 cardImage.setDisplaySize(imageWidth, imageHeight);
+
+                // Torne a imagem interativa
+                cardImage.setInteractive();
+
+                // Configure um manipulador de clique para as imagens de cartas
+                cardImage.on('pointerdown', () => {
+                    if (cardsToSelect > 0) {
+                        // Adicione a imagem clicada à lista de cartas selecionadas
+                        selectedCards.push(cardImage);
+
+                        // Faça algo para indicar que a carta foi selecionada, por exemplo, tornando-a semi-transparente
+                        cardImage.setAlpha(0.5);
+
+                        // Diminua o número de cartas que o jogador precisa selecionar
+                        cardsToSelect--;
+
+                        // Atualize o texto para mostrar quantas cartas restam para selecionar
+                        texto.setText(`Escolha ${cardsToSelect} cartas`);
+
+                        // Se o jogador selecionou três cartas, você pode fazer algo com elas
+                        if (cardsToSelect === 0) {
+                            // Faça alguma ação com as cartas selecionadas, como verificar se são pares, etc.
+                            // Reinicie o jogo ou avance para a próxima fase, dependendo das regras do seu jogo.
+                            console.log('Três cartas selecionadas:', selectedCards.map(card => card.texture.key));
+                        }
+                    }
+                });
             }
 
-            // Adicionar texto acima dos retângulos
-            const texto = this.add.text(screenWidth / 2, screenHeight / 2 - imageHeight / 2 - 180, 'As tuas Cartas', { fontSize: '20px', fill: '#ffffff' });
+            // Adicionar texto acima dos retângulos para mostrar quantas cartas restam para selecionar
+            const texto = this.add.text(screenWidth / 2, screenHeight / 2 - imageHeight / 2 - 180, `Escolha ${cardsToSelect} cartas`, { fontSize: '20px', fill: '#ffffff' });
             texto.setOrigin(0.5);
         }
 
@@ -73,3 +108,5 @@
     </script>
 </body>
 </html>
+
+
