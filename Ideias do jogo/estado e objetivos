@@ -1,0 +1,28 @@
+Objetivo atual:
+Criar um jogo onde por enquanto consigas colecionar Cartas.
+Criar a carta para cada personagem (com/ou sem dados na carta)
+
+Estado das cartas:
+-Ariana Grande: Carta sem dados;
+-Barbie: Sem Carta;
+-Batman: Sem Carta;
+-Darth Vader: Sem Carta;
+-Goku: Sem Carta;
+-Harry Potter: Sem Carta;
+-Indiana Jones: Sem Carta;
+-Iron Man: Sem Carta;
+-James Bond: Sem Carta;
+-John Wick: Sem Carta;
+-Kratos: Sem Carta;
+-Lara Croft: Sem Carta;
+-Mario: Sem Carta;
+-Michael Jackson: Sem Carta;
+-Michael Jordan: Sem Carta;
+-Mickey Mouse: Sem Carta;
+-Pikachu: Sem Carta;
+-The Rock: Sem Carta;
+
+(...Todas as cartas com um carta pronta, já tão disponiveis para a coleção, mas se não tiverem dados, não são jogáveis...)
+
+Próximos objetivos:
+Criar uma opção de batalha de cartas no jogo, alêm de uma opção de criar um deck.
