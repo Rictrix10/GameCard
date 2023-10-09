@@ -2,92 +2,109 @@
     {
         "nome": "Ariana Grande",
         "descricao": "",
-        "imagem": "cards/ArianaGrande.jpg"
+        "imagem": "cards/ArianaGrande.jpg",
+        "carta": "cards/ArianaGrande (card).png"
     },
     {
         "nome": "Barbie",
         "descricao": "",
-        "imagem": "cards/Barbie.jpg"
+        "imagem": "cards/Barbie.jpg",
+        "carta": "card/Barbie (card).png"
     },
     {
         "nome": "Batman",
         "descricao": "",
-        "imagem": "cards/Batman.jpg"
+        "imagem": "cards/Batman.jpg",
+        "carta": "card/Batman (card).png"
     },
     {
         "nome": "Darth Vader",
         "descricao": "",
-        "imagem": "cards/DarthVader.jpg"
+        "imagem": "cards/DarthVader.jpg",
+        "carta": "card/DarthVader (card).png"
     },
     {
         "nome": "Goku",
         "descricao": "",
-        "imagem": "cards/Goku.jpg"
+        "imagem": "cards/Goku.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Harry Potter",
         "descricao": "",
-        "imagem": "cards/HarryPotter.jpg"
+        "imagem": "cards/HarryPotter.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Indiana Jones",
         "descricao": "",
-        "imagem": "cards/IndianaJones.jpg"
+        "imagem": "cards/IndianaJones.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Iron Man",
         "descricao": "",
-        "imagem": "cards/IronMan.jpg"
+        "imagem": "cards/IronMan.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "James Bond",
         "descricao": "",
-        "imagem": "cards/JamesBond.jpg"
+        "imagem": "cards/JamesBond.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "John Wick",
         "descricao": "",
-        "imagem": "cards/JohnWick.jpg"
+        "imagem": "cards/JohnWick.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Kratos",
         "descricao": "",
-        "imagem": "cards/Kratos.jpg"
+        "imagem": "cards/Kratos.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Lara Croft",
         "descricao": "",
-        "imagem": "cards/LaraCroft.jpg"
+        "imagem": "cards/LaraCroft.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Mario",
         "descricao": "",
-        "imagem": "cards/Mario.jpg"
+        "imagem": "cards/Mario.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Michael Jackson",
         "descricao": "",
-        "imagem": "cards/MichaelJackson.jpg"
+        "imagem": "cards/MichaelJackson.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Michael Jordan",
         "descricao": "",
-        "imagem": "cards/MichaelJordan.jpg"
+        "imagem": "cards/MichaelJordan.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Mickey Mouse",
         "descricao": "",
-        "imagem": "cards/MickeyMouse.jpg"
+        "imagem": "cards/MickeyMouse.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "Pikachu",
         "descricao": "",
-        "imagem": "cards/Pikachu.jpg"
+        "imagem": "cards/Pikachu.jpg",
+        "carta": "card/ArianaGrande (card).png"
     },
     {
         "nome": "The Rock",
         "descricao": "",
-        "imagem": "cards/TheRock.jpg"
+        "imagem": "cards/TheRock.jpg",
+        "carta": "card/ArianaGrande (card).png"
     }
-
 ]

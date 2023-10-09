@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Jogo de Cartas</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+</head>
+<body>
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: 1200,
+            height: 700,
+            scene: {
+                preload: preload,
+                create: create,
+                update: update,
+            },
+        };
+
+        const game = new Phaser.Game(config);
+
+        const cardImages = [
+            'cards/ArianaGrande.jpg',
+            'cards/Barbie.jpg',
+            'cards/Batman.jpg',
+            'cards/DarthVader.jpg',
+            'cards/Goku.jpg',
+            'cards/HarryPotter.jpg',
+        ];
+
+        let shouldAddCard = true; // Variável para controlar a adição de cartas
+
+        function preload() {
+            for (let i = 0; i < cardImages.length; i++) {
+                this.load.image('card' + (i + 1), cardImages[i]);
+            }
+        }
+
+        function create() {
+            const boardWidth = game.config.width;
+            const boardHeight = game.config.height;
+
+            // Adicione um retângulo preto como fundo do tabuleiro
+            const graphics = this.add.graphics();
+            graphics.fillStyle(0x000000, 1);
+            graphics.fillRect(0, 0, boardWidth, boardHeight);
+
+            const numLanes = 3;
+            const laneWidth = game.config.width / numLanes;
+
+            for (let i = 0; i < numLanes; i++) {
+                const laneX = i * laneWidth + laneWidth / 2;
+                const laneCenterY = boardHeight / 2; // Centraliza verticalmente as lanes
+                const verticalMargin = 50; // Espaço desejado acima e abaixo dos retângulos cinzas
+
+                // Calcule o tamanho da zona de colocação das cartas com base no tamanho da carta
+                const imageWidth = 100;
+                const imageHeight = 150;
+                const cardScale = 0.5;
+                const cardWidth = imageWidth * cardScale;
+                const cardHeight = imageHeight * cardScale;
+
+                // Calcule a altura dos retângulos cinzas com base no espaço disponível
+                const playerAreaHeight = (boardHeight - 2 * verticalMargin) / 2;
+
+                // Adicione um retângulo cinza para a área do jogador 1 em cada lane
+                const player1Area = this.add.graphics();
+                player1Area.fillStyle(0x888888, 1);
+                player1Area.fillRect(laneX - laneWidth / 4, verticalMargin, laneWidth / 2, playerAreaHeight);
+
+                // Adicione um retângulo cinza para a área do jogador 2 em cada lane
+                const player2Area = this.add.graphics();
+                player2Area.fillStyle(0x888888, 1);
+                player2Area.fillRect(laneX - laneWidth / 4, verticalMargin + playerAreaHeight, laneWidth / 2, playerAreaHeight);
+
+                // Calcule o espaço disponível verticalmente para centralizar as cartas
+                const availableHeight = playerAreaHeight - 10; // Espaço vertical entre as zonas de colocação de cartas
+
+                // Adicione 8 zonas de colocação de cartas em fila vertical dentro de cada retângulo cinza
+                for (let j = 0; j < 8; j++) {
+                    const cardX = laneX - laneWidth / 4 + cardWidth / 2 + 75;
+                    const cardY = verticalMargin + playerAreaHeight / 2 - (availableHeight / 2) + (j * (availableHeight / 7)) + playerAreaHeight / 2;
+
+                    const cardZone = this.add.zone(cardX, cardY, cardWidth, cardHeight).setRectangleDropZone(cardWidth, cardHeight);
+                    cardZone.setData({ cardImage: null }); // Inicialmente, não há nenhuma carta na zona de colocação
+
+                    cardZone.setInteractive();
+                    this.input.setDraggable(cardZone);
+
+                    // Adicione eventos de clique ou arrasto à zona de colocação da carta
+                    cardZone.on('pointerdown', () => {
+                        // Lógica para adicionar uma carta à zona de colocação quando necessário
+                        if (!cardZone.data.values.cardImage) {
+                            // Escolha uma carta aleatória da matriz de imagens de cartas
+                            const randomCardImage = Phaser.Utils.Array.GetRandom(cardImages);
+
+                            // Crie a imagem da carta na zona de colocação e ajuste o tamanho
+                            const card = this.add.image(cardZone.x, cardZone.y, randomCardImage).setScale(cardScale);
+
+                            // Mantenha uma referência à imagem da carta na zona de colocação
+                            cardZone.data.values.cardImage = card;
+
+                            // Adicione eventos de clique ou arrasto à imagem da carta, se necessário
+                            card.setInteractive();
+                            card.on('pointerdown', () => {
+                                // Implemente a lógica de jogo quando uma carta for clicada
+                                console.log("Carta clicada!");
+                            });
+                        }
+                    });
+                }
+            }
+        }
+
+        function update() {
+            // Lógica para adicionar cartas aqui, se necessário
+            // Por exemplo, você pode adicionar cartas após um certo tempo ou quando algum evento ocorrer.
+            if (shouldAddCard) {
+                // Escolha uma carta aleatória da matriz de imagens de cartas
+                const randomCardImage = Phaser.Utils.Array.GetRandom(cardImages);
+
+                // Escolha uma zona de colocação de cartas aleatória ou baseada em alguma lógica
+                const randomCardZone = getRandomCardZone();
+
+                // Verifique se a zona de colocação de cartas selecionada não tem uma carta
+                if (randomCardZone && !randomCardZone.data.values.cardImage) {
+                    // Crie a imagem da carta na zona de colocação e ajuste o tamanho
+                    const card = this.add.image(randomCardZone.x, randomCardZone.y, randomCardImage).setScale(cardScale);
+
+                    // Mantenha uma referência à imagem da carta na zona de colocação
+                    randomCardZone.data.values.cardImage = card;
+
+                    // Adicione eventos de clique ou arrasto à imagem da carta, se necessário
+                    card.setInteractive();
+                    card.on('pointerdown', () => {
+                        // Implemente a lógica de jogo quando uma carta for clicada
+                        console.log("Carta clicada!");
+                    });
+
+                    // Defina um temporizador ou condição para controlar quando adicionar a próxima carta
+                    shouldAddCard = false; // Evita adicionar cartas muito rapidamente
+                    this.time.delayedCall(2000, () => {
+                        shouldAddCard = true; // Permite adicionar a próxima carta após 2 segundos
+                    });
+                }
+            }
+        }
+
+        // Função para obter uma zona de colocação de cartas aleatória ou implemente sua própria lógica
+        function getRandomCardZone() {
+            // Crie um array para armazenar todas as zonas de colocação de cartas
+            const cardZones = [];
+
+            // Percorra todas as zonas de colocação de cartas e adicione-as ao array
+            for (let j = 0; j < 3; j++) {
+                for (let i = 0; i < 8; i++) {
+                    const cardZone = game.scene.scenes[0].children[3 + j * 8 + i]; // Assumindo que as zonas de cartas estão nas posições corretas na cena
+                    cardZones.push(cardZone);
+                }
+            }
+
+            // Verifique se há zonas de colocação de cartas disponíveis
+            if (cardZones.length === 0) {
+                return null; // Não há zonas de colocação de cartas disponíveis
+            }
+
+            // Escolha uma zona de colocação de cartas aleatória
+            const randomIndex = Math.floor(Math.random() * cardZones.length);
+
+            return cardZones[randomIndex];
+        }
+
+    </script>
+</body>
+</html>
